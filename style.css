@@ -1,0 +1,23 @@
+.navs{
+    display: flex;
+}
+.nvbar{
+    width: 30vw;
+    height: 50vh;
+    background-color:red ;
+    margin-right:20px ;
+
+
+}
+.navbar_two{
+    width:30vmax;
+    /* width:30vmin; */
+
+    height: 50vh;
+    background-color:blue ;
+    margin-right: 20px;
+
+}
+.navbar_three{
+    font-size: 1.5vmax;
+}
