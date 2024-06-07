@@ -15,9 +15,10 @@ const Navbar=()=>{
     }
     const handleLogout=()=>{
 
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("userEmail")
-        Navigate("LogIn")
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("JWTuserEmail")
+        // Navigate("LogIn")
     }
 
 
@@ -28,7 +29,7 @@ const Navbar=()=>{
 
         <div className="logoSide">
             <div className="companyIcon active zx">
-               <GiCrossFlare/>
+               {/* <GiCrossFlare/> */}
             </div>
             <div className="companyName zx">
                JWT
@@ -37,12 +38,14 @@ const Navbar=()=>{
 
        
 
-{(localStorage.getItem("JWTauthToken")) ?
+{(localStorage.getItem("accessToken")) ?
        
 
         <div className="navbarMid a">
             <ul>
                 <li className="navbarNames active"><Link className='LinkTAG LinkTAGHome active' to={"/"}>Home</Link></li> 
+                <li className="navbarNames active"><Link className='LinkTAG LinkTAGHome active' to={"/About"}>About</Link></li> 
+
             </ul>
         </div>
 
@@ -59,7 +62,7 @@ const Navbar=()=>{
         </div>
 }
 
-{(localStorage.getItem("JWTauthToken")) ?
+{(localStorage.getItem("accessToken")) ?
 
     <div className="buttonside a">
     

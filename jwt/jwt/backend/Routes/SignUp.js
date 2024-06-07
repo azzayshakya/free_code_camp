@@ -1,18 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const users = require("../model/SignUpUserModel");
+const users = require("../models/User");
 const bcrypt = require('bcrypt');
 
 
 router.post("/SignUp", async (req, res) => {
     try {
-        const { name, email, mobileNumber, password } = req.body;
-        if (!name || !email || !mobileNumber || !password) {
+        console.log("u are here")
+        const { name, email, password } = req.body;
+        if (!name || !email || !password) {
             return res.status(400).json({ success: false, message: "Missing required fields" });
         }
         const alreadyuser=users.find({email});
         if(alreadyuser){
-            return res.status(400).json({})
+            return res.status(400).json({success:false,message:"You already have the account with this email"})
         }
         
         const salt = await bcrypt.genSalt(10);
@@ -22,8 +23,7 @@ router.post("/SignUp", async (req, res) => {
         await users.create({
             name,
             email:Lowercaseemail,
-            mobileNumber,
-            password,
+            password:HashedPassword,
         });
 
         res.status(201).json({ success: true, message: "Signed up successfully" });

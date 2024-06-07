@@ -10,30 +10,29 @@ const Signup = () => {
 
   const [credentials, setcredentials] = useState({
     name: "",
-    email: "",
-    geolocation: "",
+    email: "", 
     password: "",
-    MobileNo: "",
+    
   });
   const [showPopup, setShowPopup] = useState(false);
   const [Button, setButton] = useState(true);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { 
+    console.log(credentials)
     e.preventDefault();
     setButton(false);
     setShowPopup(true);
 
-    const response = await fetch("http://localhost:1000/auth/creatuser", {
+    const response = await fetch("http://localhost:1000/auth/SignUp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+      body: JSON.stringify({  
         name: credentials.name,
-        email: credentials.email,
-        location: credentials.geolocation,
+        email: credentials.email, 
         password: credentials.password,
-        MobileNo: credentials.MobileNo,
+        
       }),
     });
     const json = await response.json();
@@ -87,7 +86,7 @@ const Signup = () => {
                 onChange={handleNameChange}
               />
             </div>
-            <div className="input_group">
+            {/* <div className="input_group">
               <i class="fa-solid fa-location-dot"></i>
               <input
                 type="text"
@@ -98,7 +97,7 @@ const Signup = () => {
                 value={credentials.geolocation}
                 onChange={handleNameChange}
               />
-            </div>
+            </div> */}
             {/* <div className="CurrentLocationBtn">
             <button>Get Your Locatoin</button>
           </div> */}
@@ -114,7 +113,7 @@ const Signup = () => {
                 onChange={handleNameChange}
               />
             </div>
-            <div className="input_group">
+            {/* <div className="input_group">
               <i class="fa fa-address-book" aria-hidden="true"></i>
               <input
                 placeholder="Mobile No."
@@ -124,7 +123,7 @@ const Signup = () => {
                 value={credentials.MobileNo}
                 onChange={handleNameChange}
               />
-            </div>
+            </div> */}
             {showPopup && (
               <div className="SingingUpLoading " style={{ marginTop: "50px" }}>
                 <h2>Please Wait !</h2>

@@ -1,19 +1,35 @@
-const express=require('express');
+// app.js
+const express = require('express');
 const connectDb = require('./db');
-const port=1000;
-const app= express();
+require('dotenv').config();
+const authenticateToken = require('./middleware/authMid');
 
+const app = express();
+
+// Connect to the database
+connectDb();
+
+// Use CORS to allow all origins
 const cors = require('cors');
 app.use(cors({
     origin: '*',
-    credentials: true, 
-  }));
-  
+    credentials: true,
+}));
 
-app.get("/",(req,res)=>{
-    res.send("hey ajju how are you , this is your zobs website")
-})
+app.use(express.json());
 
-app.listen(1000,()=>{
-    console.log("ur app is running")
-})
+// Routes
+app.use('/auth/', require('./Routes/Login'));
+app.use('/auth/', require('./Routes/SignUp'));
+app.use( require('./Routes/RefreshToken'));
+app.use('/api', authenticateToken, require('./Routes/YourDeals')); // Added authenticateToken middleware here
+
+app.get("/", (req, res) => {
+    res.send("Hey Ajju, how are you? This is your zobs website");
+});
+
+// Start the server
+const PORT = process.env.PORT || 1000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
