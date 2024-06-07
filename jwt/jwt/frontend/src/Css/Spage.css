@@ -1,0 +1,21 @@
+.main{
+    /* border: 2px red solid; */
+    margin-top: 50px;
+
+}
+.sign_up_form_main_container{
+    /* border: 2px blue solid; */
+    
+
+
+}
+.login_form{
+    position: relative;
+    left: 35%;
+    border: 0.5px black solid;
+    width: 300px;
+    min-height:250px;
+    box-shadow: 5px 5px 5px 1px;
+    padding: 0px 0px 0px 20px;
+
+}
