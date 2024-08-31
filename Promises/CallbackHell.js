@@ -51,5 +51,5 @@ getdata(3,()=>{
         })    
     })
 })
-// prob- u will gett all the data at the same time
+// prob- u will gett all the callback hell problem
 
